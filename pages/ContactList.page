@@ -48,7 +48,7 @@
                     <apex:actionSupport event="onchange" reRender="contacts_list"/>
                 </apex:selectList>
             </td>
-        	</tr>
+            </tr>
             </table>
         </apex:pageBlock>
     </apex:form>
