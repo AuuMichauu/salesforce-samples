@@ -1,0 +1,32 @@
+<!-- Apex page that is connected with custom controller -->
+<apex:page controller="ContactsListWithController">
+    <apex:form>
+        <!-- Creates page block with specific id -->
+        <apex:pageBlock title="Contacts List" id="contacts_list">
+            <!-- Connects to method from controller -->
+            <apex:pageBlockTable value="{! contacts }" var="ct">
+                <apex:column value="{! ct.FirstName }">
+                    <apex:facet name="header">
+                        <!-- Acess public method and re render contact_list -->
+                        <apex:commandLink action="{! sortByFirstName }"
+                            reRender="contacts_list">
+                            <!-- Returns label name from field -->
+                            <apex:outputText value="{! $ObjectType.Contact.Fields.FirstName.Label }"/>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                <apex:column value="{! ct.LastName }">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{! sortByLastName }"
+                            reRender="contacts_list">
+                            <!-- Returns label name from field -->
+                            <apex:outputText value="{! $ObjectType.Contact.Fields.LastName.Label }"/>
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>
+                <apex:column value="{! ct.Title }"/>
+                <apex:column value="{! ct.Email }"/>
+			</apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
