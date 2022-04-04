@@ -1,0 +1,9 @@
+Navigate to https://workbench.developerforce.com/login.php.
+For Environment, select Production.
+Select the latest API version from the API Version drop-down.
+Accept the terms of service, and click Login with Salesforce.
+To allow Workbench to access your information, click Allow.
+Enter your login credentials and then click Log in to Salesforce.
+After logging in, select utilities | REST Explorer.
+Select POST.
+The URL path that REST Explorer accepts is relative to the instance URL of your org. Provide only the path that is appended to the instance URL. In the relative URI input field, replace the default URI with /services/apexrest/Cases/.
