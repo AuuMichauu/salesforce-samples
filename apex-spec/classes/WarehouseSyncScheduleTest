@@ -1,0 +1,18 @@
+@isTest
+private with sharing class WarehouseSyncScheduleTest {
+    private static string CRON_EXP = '0 0 1 ? * * *';
+    
+    @isTest
+    public static void ScheduleTest(){
+        Test.setMock(HttpCalloutMock.class, new WarehouseCalloutServiceMock());
+        Test.startTest();
+        ID jobID = System.schedule('WarehouseSyncScheduleJob', CRON_EXP, new WarehouseSyncSchedule());
+        CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE ID = :jobID]; 
+        // Verify the expressions are the same System.assertEquals(CRON_EXP, ct.CronExpression); 
+        // Verify the job has not run 
+        System.assertEquals(0, ct.TimesTriggered); 
+        // Verify the next time the job will run 
+        System.assertEquals('2022-12-30 01:00:00', String.valueOf(ct.NextFireTime));
+        Test.stopTest();
+    }
+}
